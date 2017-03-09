@@ -4,6 +4,10 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
+var _extends2 = require('babel-runtime/helpers/extends');
+
+var _extends3 = _interopRequireDefault(_extends2);
+
 var _defineProperty2 = require('babel-runtime/helpers/defineProperty');
 
 var _defineProperty3 = _interopRequireDefault(_defineProperty2);
@@ -34,13 +38,15 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactRedux = require('react-redux');
 
-require('isomorphic-fetch');
+var _LoginActions = require('./LoginActions');
 
-var _store = require('../store');
+var actions = _interopRequireWildcard(_LoginActions);
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var _jsxFileName = '/Users/stephen.bluck/Documents/repos/ka-react-website/components/Login.js';
+var _jsxFileName = '/Users/stephen.bluck/Documents/repos/ka-react-website/components/login/LoginForm.js';
 
 
 var Login = function (_React$Component) {
@@ -59,24 +65,15 @@ var Login = function (_React$Component) {
 
     _this.handleLogin = function (e) {
       e.preventDefault();
-      _this.props.dispatch((0, _store.login)(_this.state.email, _this.state.password));
-    };
-
-    _this.handleLogout = function (e) {
-      e.preventDefault();
-      _this.props.dispatch(_store.logout);
+      _this.props.dispatch(actions.login(_this.state.email, _this.state.password));
     };
 
     _this.state = {
       email: '',
       password: ''
     };
-
     return _this;
   }
-
-  // TODO Send though email and pass
-
 
   (0, _createClass3.default)(Login, [{
     key: 'render',
@@ -85,36 +82,41 @@ var Login = function (_React$Component) {
         return _react2.default.createElement('div', {
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 34
+            lineNumber: 29
           }
         }, _react2.default.createElement('form', { method: 'POST', onSubmit: this.handleLogin, __source: {
             fileName: _jsxFileName,
-            lineNumber: 35
+            lineNumber: 30
           }
         }, _react2.default.createElement('input', { type: 'text', name: 'email', onChange: this.handleChange('email'), value: this.state.email, __source: {
             fileName: _jsxFileName,
-            lineNumber: 36
+            lineNumber: 31
           }
         }), _react2.default.createElement('input', { type: 'password', name: 'password', onChange: this.handleChange('password'), value: this.state.password, __source: {
             fileName: _jsxFileName,
-            lineNumber: 37
+            lineNumber: 32
           }
         }), _react2.default.createElement('input', { type: 'submit', value: 'Log in', __source: {
             fileName: _jsxFileName,
-            lineNumber: 38
+            lineNumber: 33
           }
-        })));
+        })), this.props.loginError && _react2.default.createElement('span', {
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 35
+          }
+        }, this.props.loginError));
       }
 
       if (this.props.loggedIn) {
         return _react2.default.createElement('div', {
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 46
+            lineNumber: 42
           }
         }, 'You are logged in. ', _react2.default.createElement('a', { href: '#', onClick: this.handleLogout, __source: {
             fileName: _jsxFileName,
-            lineNumber: 46
+            lineNumber: 42
           }
         }, 'Logout'));
       }
@@ -123,7 +125,11 @@ var Login = function (_React$Component) {
 
   return Login;
 }(_react2.default.Component);
+// container part
 
-exports.default = (0, _reactRedux.connect)(function (state) {
-  return state;
-})(Login);
+
+function mapStateToProps(state) {
+  return (0, _extends3.default)({}, state.login);
+}
+
+exports.default = (0, _reactRedux.connect)(mapStateToProps)(Login);

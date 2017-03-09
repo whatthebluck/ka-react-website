@@ -1,8 +1,10 @@
 import { connect } from 'react-redux'
 import 'isomorphic-fetch'
 import StripeCheckout from 'react-stripe-checkout';
-import Login from './Login'
+import Login from './login/Login'
 
+
+// TODO - move to an action
 const onToken = async (token) => {
   const charge = await fetch('http://localhost:3001/charge', {
     method: 'POST',
@@ -17,7 +19,7 @@ const Page = (props) => {
       <pre>{JSON.stringify(props, null, 2)}</pre>
       <h1>{props.title}</h1>
 
-      <Login/>
+      <Login />
 
       <div>Purchase single product <StripeCheckout
         token={onToken}

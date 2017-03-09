@@ -1,6 +1,6 @@
+import React from 'react'
 import { connect } from 'react-redux'
-import 'isomorphic-fetch'
-import { logout, login } from '../store'
+import * as actions from './LoginActions'
 
 
 class Login extends React.Component {
@@ -11,20 +11,15 @@ class Login extends React.Component {
       email: '',
       password: ''
     };
-
   }
+
 
   handleChange = key => e => this.setState({ [key]: e.target.value});
 
-  // TODO Send though email and pass
+
   handleLogin = e => {
     e.preventDefault()
-    this.props.dispatch(login(this.state.email, this.state.password))
-  }
-
-  handleLogout = e => {
-    e.preventDefault()
-    this.props.dispatch(logout)
+    this.props.dispatch(actions.login(this.state.email, this.state.password))
   }
 
 
@@ -37,6 +32,7 @@ class Login extends React.Component {
             <input type="password" name="password" onChange={this.handleChange('password')} value={this.state.password}/>
             <input type="submit" value="Log in"/>
           </form>
+          { this.props.loginError && <span>{this.props.loginError}</span>}
         </div>
       )
     }
@@ -50,6 +46,9 @@ class Login extends React.Component {
   }
 
 }
+// container part
+function mapStateToProps(state) {
+  return {...state.login};
+}
 
-
-export default connect(state => state)(Login)
+export default connect(mapStateToProps)(Login);

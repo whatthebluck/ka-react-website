@@ -1,8 +1,9 @@
 // import Link from 'next/link'
 import React from 'react'
 import withRedux from 'next-redux-wrapper'
-import { initStore, auth } from '../store'
-import Page from '../components/Page';
+import { initStore } from '../store'
+import { auth } from '../components/auth/AuthActions'
+import Page from '../components/Page'
 
 
 class Index extends React.Component {

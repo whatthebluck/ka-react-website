@@ -28,7 +28,7 @@ var _reactStripeCheckout = require('react-stripe-checkout');
 
 var _reactStripeCheckout2 = _interopRequireDefault(_reactStripeCheckout);
 
-var _Login = require('./Login');
+var _Login = require('./login/Login');
 
 var _Login2 = _interopRequireDefault(_Login);
 
@@ -37,6 +37,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var _this = undefined,
     _jsxFileName = '/Users/stephen.bluck/Documents/repos/ka-react-website/components/Page.js';
 
+// TODO - move to an action
 var onToken = function () {
   var _ref = (0, _asyncToGenerator3.default)(_regenerator2.default.mark(function _callee(token) {
     var charge;
@@ -78,27 +79,27 @@ var Page = function Page(props) {
   return _react2.default.createElement('div', {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 16
+      lineNumber: 18
     }
   }, _react2.default.createElement('pre', {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 17
+      lineNumber: 19
     }
   }, (0, _stringify2.default)(props, null, 2)), _react2.default.createElement('h1', {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 18
+      lineNumber: 20
     }
   }, props.title), _react2.default.createElement(_Login2.default, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 20
+      lineNumber: 22
     }
   }), _react2.default.createElement('div', {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 22
+      lineNumber: 24
     }
   }, 'Purchase single product ', _react2.default.createElement(_reactStripeCheckout2.default, {
     token: onToken,
@@ -108,7 +109,7 @@ var Page = function Page(props) {
     panelLabel: 'Pay',
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 22
+      lineNumber: 24
     }
   }, 'Test')));
 };

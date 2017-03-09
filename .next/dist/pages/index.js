@@ -34,6 +34,8 @@ var _nextReduxWrapper2 = _interopRequireDefault(_nextReduxWrapper);
 
 var _store = require('../store');
 
+var _AuthActions = require('../components/auth/AuthActions');
+
 var _Page = require('../components/Page');
 
 var _Page2 = _interopRequireDefault(_Page);
@@ -58,7 +60,7 @@ var Index = function (_React$Component) {
     value: function render() {
       return _react2.default.createElement(_Page2.default, { title: 'Home Page', __source: {
           fileName: _jsxFileName,
-          lineNumber: 17
+          lineNumber: 18
         }
       });
     }
@@ -69,7 +71,7 @@ var Index = function (_React$Component) {
           store = _ref.store,
           isServer = _ref.isServer;
 
-      store.dispatch((0, _store.auth)(req));
+      store.dispatch((0, _AuthActions.auth)(req));
       return { isServer: isServer };
     }
   }]);
