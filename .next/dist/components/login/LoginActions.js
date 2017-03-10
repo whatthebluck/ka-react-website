@@ -33,33 +33,39 @@ var login = exports.login = function login(email, password) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              _context.prev = 0;
-              _context.next = 3;
+
+              dispatch({ type: "LOADING", loading: true });
+
+              _context.prev = 1;
+              _context.next = 4;
               return _firebase2.default.auth().signInWithEmailAndPassword(email, password);
 
-            case 3:
+            case 4:
               user = _context.sent;
 
               _reactCookie2.default.save('userId', user.uid, { path: '/' });
-              return _context.abrupt('return', dispatch({
-                type: "SET_LOGGED_IN",
-                loggedIn: true
-              }));
+              dispatch({ type: "AUTH_SUCCESS" });
+              _context.next = 12;
+              break;
 
-            case 8:
-              _context.prev = 8;
-              _context.t0 = _context['catch'](0);
+            case 9:
+              _context.prev = 9;
+              _context.t0 = _context['catch'](1);
               return _context.abrupt('return', dispatch({
-                type: "SET_LOGIN_ERROR",
+                type: "ERROR",
                 message: _context.t0.message
               }));
 
-            case 11:
+            case 12:
+
+              dispatch({ type: "LOADING", loading: false });
+
+            case 13:
             case 'end':
               return _context.stop();
           }
         }
-      }, _callee, _this, [[0, 8]]);
+      }, _callee, _this, [[1, 9]]);
     }));
 
     return function (_x) {
@@ -74,17 +80,19 @@ var logout = exports.logout = function () {
       while (1) {
         switch (_context2.prev = _context2.next) {
           case 0:
-            _context2.next = 2;
+
+            dispatch({ type: "LOADING", loading: true });
+
+            _context2.next = 3;
             return _firebase2.default.auth().signOut();
 
-          case 2:
+          case 3:
             _reactCookie2.default.remove('userId', { path: '/' });
-            dispatch({
-              type: 'SET_LOGGED_IN',
-              loggedIn: false
-            });
 
-          case 4:
+            dispatch({ type: 'REMOVE_AUTH' });
+            dispatch({ type: "LOADING", loading: false });
+
+          case 6:
           case 'end':
             return _context2.stop();
         }

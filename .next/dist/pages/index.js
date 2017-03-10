@@ -4,6 +4,14 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
+var _regenerator = require('babel-runtime/regenerator');
+
+var _regenerator2 = _interopRequireDefault(_regenerator);
+
+var _asyncToGenerator2 = require('babel-runtime/helpers/asyncToGenerator');
+
+var _asyncToGenerator3 = _interopRequireDefault(_asyncToGenerator2);
+
 var _getPrototypeOf = require('babel-runtime/core-js/object/get-prototype-of');
 
 var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
@@ -66,14 +74,35 @@ var Index = function (_React$Component) {
     }
   }], [{
     key: 'getInitialProps',
-    value: function getInitialProps(_ref) {
-      var req = _ref.req,
-          store = _ref.store,
-          isServer = _ref.isServer;
+    value: function () {
+      var _ref = (0, _asyncToGenerator3.default)(_regenerator2.default.mark(function _callee(_ref2) {
+        var req = _ref2.req,
+            store = _ref2.store,
+            isServer = _ref2.isServer;
+        return _regenerator2.default.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _context.next = 2;
+                return store.dispatch((0, _AuthActions.auth)(req));
 
-      store.dispatch((0, _AuthActions.auth)(req));
-      return { isServer: isServer };
-    }
+              case 2:
+                return _context.abrupt('return', { isServer: isServer });
+
+              case 3:
+              case 'end':
+                return _context.stop();
+            }
+          }
+        }, _callee, this);
+      }));
+
+      function getInitialProps(_x) {
+        return _ref.apply(this, arguments);
+      }
+
+      return getInitialProps;
+    }()
   }]);
 
   return Index;

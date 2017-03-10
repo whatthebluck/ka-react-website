@@ -1,16 +1,26 @@
-import { createStore, applyMiddleware, combineReducers } from 'redux'
+import { createStore, applyMiddleware, combineReducers, compose } from 'redux'
 import thunkMiddleware from 'redux-thunk'
 import './lib/init-firebase'
 
 
+import { reducer as formReducer } from 'redux-form'
 import LoginReducer from './components/login/LoginReducer'
+import AuthReducer from './components/auth/AuthReducer'
 
 
 const reducers = combineReducers({
-  login: LoginReducer
+  auth: AuthReducer,
+  login: LoginReducer,
+  form: formReducer,
 })
 
+const composeEnhancers =
+  typeof window === 'object' &&
+  window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ ?
+    window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ : compose;
 
 export const initStore = (initialState) => {
-  return createStore(reducers, initialState, applyMiddleware(thunkMiddleware))
+  return createStore(reducers, initialState, composeEnhancers(
+    applyMiddleware(thunkMiddleware))
+  )
 }

@@ -16,7 +16,6 @@ const onToken = async (token) => {
 const Page = (props) => {
   return (
     <div>
-      <pre>{JSON.stringify(props, null, 2)}</pre>
       <h1>{props.title}</h1>
 
       <Login />

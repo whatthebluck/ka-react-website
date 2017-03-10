@@ -1,54 +1,24 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import * as actions from './LoginActions'
+import { Field, reduxForm } from 'redux-form';
 
-
-class Login extends React.Component {
-
-  constructor(props) {
-    super(props);
-    this.state = {
-      email: '',
-      password: ''
-    };
-  }
-
-
-  handleChange = key => e => this.setState({ [key]: e.target.value});
-
-
-  handleLogin = e => {
-    e.preventDefault()
-    this.props.dispatch(actions.login(this.state.email, this.state.password))
-  }
-
-
-  render() {
-    if(!this.props.loggedIn) {
-      return (
-        <div>
-          <form method="POST" onSubmit={this.handleLogin}>
-            <input type="text" name="email" onChange={this.handleChange('email')} value={this.state.email}/>
-            <input type="password" name="password" onChange={this.handleChange('password')} value={this.state.password}/>
-            <input type="submit" value="Log in"/>
-          </form>
-          { this.props.loginError && <span>{this.props.loginError}</span>}
-        </div>
-      )
-    }
-
-    if(this.props.loggedIn) {
-      return (
-        <div>You are logged in. <a href="#" onClick={this.handleLogout}>Logout</a></div>
-      )
-
-    }
-  }
-
+const Login = ({ form, handleSubmit, login}) => {
+    return (
+      <div>
+        <form method="POST" onSubmit={handleSubmit}>
+          <Field component="input" type="text" name="email"/>
+          <Field component="input" type="password" name="password"/>
+          <input type="submit" value="Log in"/>
+        </form>
+        {login.error && <strong>{login.error}</strong>}
+      </div>
+    )
 }
+
+
 // container part
 function mapStateToProps(state) {
-  return {...state.login};
+  return {...state};
 }
 
-export default connect(mapStateToProps)(Login);
+export default reduxForm({ form: 'login' })(connect(mapStateToProps)(Login))

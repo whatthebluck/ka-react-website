@@ -8,8 +8,8 @@ import Page from '../components/Page'
 
 class Index extends React.Component {
 
-  static getInitialProps ({ req, store, isServer }) {
-    store.dispatch(auth(req))
+  static async getInitialProps ({ req, store, isServer }) {
+    await store.dispatch(auth(req))
     return { isServer }
   }
 

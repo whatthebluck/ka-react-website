@@ -3,9 +3,16 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+
+var _extends2 = require('babel-runtime/helpers/extends');
+
+var _extends3 = _interopRequireDefault(_extends2);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 var initialState = {
-  loggedIn: false,
-  loginError: null
+  loading: false,
+  error: null
 };
 
 exports.default = function () {
@@ -13,10 +20,15 @@ exports.default = function () {
   var action = arguments[1];
 
   switch (action.type) {
-    case 'SET_LOGGED_IN':
-      return { loggedIn: action.loggedIn, loginError: null };
-    case 'SET_LOGIN_ERROR':
-      return { loginError: action.message };
+    case 'LOADING':
+      return (0, _extends3.default)({}, state, {
+        error: null,
+        loading: action.loading
+      });
+    case 'ERROR':
+      return (0, _extends3.default)({}, state, {
+        error: action.message
+      });
     default:
       return state;
   }

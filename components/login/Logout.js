@@ -1,18 +1,12 @@
 import { connect } from 'react-redux'
-import * as actions from './LoginActions'
 
-const handleLogout = dispatch => e => {
-  e.preventDefault()
-  dispatch(actions.logout)
-}
-
-const Logout = ({dispatch}) => {
-  return <div>You are logged in. <a href="#" onClick={handleLogout(dispatch)}>Logout</a></div>
+const Logout = ({handleLogout}) => {
+  return <div>You are logged in. <a href="#" onClick={handleLogout}>Logout</a></div>
 }
 
 // container part
 function mapStateToProps(state) {
-  return {...state.login};
+  return {...state};
 }
 
 export default connect(mapStateToProps)(Logout);

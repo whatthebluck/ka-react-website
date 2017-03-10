@@ -81,25 +81,20 @@ var Page = function Page(props) {
       fileName: _jsxFileName,
       lineNumber: 18
     }
-  }, _react2.default.createElement('pre', {
+  }, _react2.default.createElement('h1', {
     __source: {
       fileName: _jsxFileName,
       lineNumber: 19
     }
-  }, (0, _stringify2.default)(props, null, 2)), _react2.default.createElement('h1', {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 20
-    }
   }, props.title), _react2.default.createElement(_Login2.default, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 22
+      lineNumber: 21
     }
   }), _react2.default.createElement('div', {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 24
+      lineNumber: 23
     }
   }, 'Purchase single product ', _react2.default.createElement(_reactStripeCheckout2.default, {
     token: onToken,
@@ -109,7 +104,7 @@ var Page = function Page(props) {
     panelLabel: 'Pay',
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 24
+      lineNumber: 23
     }
   }, 'Test')));
 };
