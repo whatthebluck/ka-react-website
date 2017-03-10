@@ -12,6 +12,8 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
+var _redux = require('redux');
+
 var _reactRedux = require('react-redux');
 
 var _reduxForm = require('redux-form');
@@ -29,28 +31,28 @@ var Login = function Login(_ref) {
   return _react2.default.createElement('div', {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 7
+      lineNumber: 8
     }
   }, _react2.default.createElement('form', { method: 'POST', onSubmit: handleSubmit, __source: {
       fileName: _jsxFileName,
-      lineNumber: 8
+      lineNumber: 9
     }
   }, _react2.default.createElement(_reduxForm.Field, { component: 'input', type: 'text', name: 'email', __source: {
       fileName: _jsxFileName,
-      lineNumber: 9
+      lineNumber: 10
     }
   }), _react2.default.createElement(_reduxForm.Field, { component: 'input', type: 'password', name: 'password', __source: {
       fileName: _jsxFileName,
-      lineNumber: 10
+      lineNumber: 11
     }
   }), _react2.default.createElement('input', { type: 'submit', value: 'Log in', __source: {
       fileName: _jsxFileName,
-      lineNumber: 11
+      lineNumber: 12
     }
   })), login.error && _react2.default.createElement('strong', {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 13
+      lineNumber: 14
     }
   }, login.error));
 };
@@ -60,4 +62,4 @@ function mapStateToProps(state) {
   return (0, _extends3.default)({}, state);
 }
 
-exports.default = (0, _reduxForm.reduxForm)({ form: 'login' })((0, _reactRedux.connect)(mapStateToProps)(Login));
+exports.default = (0, _redux.compose)((0, _reduxForm.reduxForm)({ form: 'login' }), (0, _reactRedux.connect)(mapStateToProps))(Login);
