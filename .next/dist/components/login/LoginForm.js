@@ -26,35 +26,37 @@ var _jsxFileName = '/Users/stephen.bluck/Documents/repos/ka-react-website/compon
 var Login = function Login(_ref) {
   var form = _ref.form,
       handleSubmit = _ref.handleSubmit,
-      login = _ref.login;
+      login = _ref.login,
+      handleLogin = _ref.handleLogin,
+      error = _ref.error;
 
   return _react2.default.createElement('div', {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 8
-    }
-  }, _react2.default.createElement('form', { method: 'POST', onSubmit: handleSubmit, __source: {
-      fileName: _jsxFileName,
       lineNumber: 9
     }
-  }, _react2.default.createElement(_reduxForm.Field, { component: 'input', type: 'text', name: 'email', __source: {
-      fileName: _jsxFileName,
-      lineNumber: 10
-    }
-  }), _react2.default.createElement(_reduxForm.Field, { component: 'input', type: 'password', name: 'password', __source: {
+  }, login.loading, _react2.default.createElement('form', { method: 'POST', onSubmit: handleSubmit(handleLogin), __source: {
       fileName: _jsxFileName,
       lineNumber: 11
     }
-  }), _react2.default.createElement('input', { type: 'submit', value: 'Log in', __source: {
+  }, _react2.default.createElement(_reduxForm.Field, { component: 'input', type: 'text', name: 'email', __source: {
       fileName: _jsxFileName,
       lineNumber: 12
     }
-  })), login.error && _react2.default.createElement('strong', {
-    __source: {
+  }), _react2.default.createElement(_reduxForm.Field, { component: 'input', type: 'password', name: 'password', __source: {
+      fileName: _jsxFileName,
+      lineNumber: 13
+    }
+  }), _react2.default.createElement('input', { type: 'submit', value: 'Log in', __source: {
       fileName: _jsxFileName,
       lineNumber: 14
     }
-  }, login.error));
+  })), error && _react2.default.createElement('strong', {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 16
+    }
+  }, error));
 };
 
 // container part

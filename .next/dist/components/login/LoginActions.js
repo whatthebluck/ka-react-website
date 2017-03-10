@@ -21,6 +21,8 @@ var _firebase = require('firebase');
 
 var _firebase2 = _interopRequireDefault(_firebase);
 
+var _reduxForm = require('redux-form');
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var _this = undefined;
@@ -44,28 +46,26 @@ var login = exports.login = function login(email, password) {
               user = _context.sent;
 
               _reactCookie2.default.save('userId', user.uid, { path: '/' });
-              dispatch({ type: "AUTH_SUCCESS" });
-              _context.next = 12;
-              break;
 
-            case 9:
-              _context.prev = 9;
-              _context.t0 = _context['catch'](1);
-              return _context.abrupt('return', dispatch({
-                type: "ERROR",
-                message: _context.t0.message
-              }));
-
-            case 12:
-
+              dispatch({ type: "AUTH_SUCCESS", userId: user.uid });
               dispatch({ type: "LOADING", loading: false });
 
-            case 13:
+              _context.next = 14;
+              break;
+
+            case 10:
+              _context.prev = 10;
+              _context.t0 = _context['catch'](1);
+
+              dispatch({ type: "LOADING", loading: false });
+              throw new _reduxForm.SubmissionError({ _error: _context.t0.message });
+
+            case 14:
             case 'end':
               return _context.stop();
           }
         }
-      }, _callee, _this, [[1, 9]]);
+      }, _callee, _this, [[1, 10]]);
     }));
 
     return function (_x) {
@@ -87,6 +87,7 @@ var logout = exports.logout = function () {
             return _firebase2.default.auth().signOut();
 
           case 3:
+
             _reactCookie2.default.remove('userId', { path: '/' });
 
             dispatch({ type: 'REMOVE_AUTH' });

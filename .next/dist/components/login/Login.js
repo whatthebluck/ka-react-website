@@ -65,11 +65,8 @@ var Login = function (_React$Component) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = (0, _possibleConstructorReturn3.default)(this, (_ref = Login.__proto__ || (0, _getPrototypeOf2.default)(Login)).call.apply(_ref, [this].concat(args))), _this), _this.handleSubmit = function (e) {
-      e.preventDefault();
-      var email = _this.props.form.login.values.email;
-      var password = _this.props.form.login.values.password;
-      _this.props.dispatch((0, _LoginActions.login)(email, password));
+    return _ret = (_temp = (_this = (0, _possibleConstructorReturn3.default)(this, (_ref = Login.__proto__ || (0, _getPrototypeOf2.default)(Login)).call.apply(_ref, [this].concat(args))), _this), _this.handleLogin = function (values) {
+      return _this.props.dispatch((0, _LoginActions.login)(values.email, values.password));
     }, _this.handleLogout = function (e) {
       e.preventDefault();
       _this.props.dispatch(_LoginActions.logout);
@@ -81,15 +78,15 @@ var Login = function (_React$Component) {
     value: function render() {
 
       if (!this.props.auth) {
-        return _react2.default.createElement(_LoginForm2.default, { handleSubmit: this.handleSubmit, __source: {
+        return _react2.default.createElement(_LoginForm2.default, { handleLogin: this.handleLogin, __source: {
             fileName: _jsxFileName,
-            lineNumber: 26
+            lineNumber: 23
           }
         });
       } else {
         return _react2.default.createElement(_Logout2.default, { handleLogout: this.handleLogout, __source: {
             fileName: _jsxFileName,
-            lineNumber: 28
+            lineNumber: 25
           }
         });
       }

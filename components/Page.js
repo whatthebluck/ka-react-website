@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import 'isomorphic-fetch'
-import StripeCheckout from 'react-stripe-checkout';
+// import StripeCheckout from 'react-stripe-checkout';
 import Login from './login/Login'
 
 
@@ -20,7 +20,7 @@ const Page = (props) => {
 
       <Login />
 
-      <div>Purchase single product <StripeCheckout
+      {/*<div>Purchase single product <StripeCheckout
         token={onToken}
         stripeKey="pk_test_fMqC4KwF8gDKdeO6HtmBFWTT"
         amount={6000}
@@ -28,7 +28,7 @@ const Page = (props) => {
         panelLabel="Pay"
       >
         Test
-      </StripeCheckout></div>
+      </StripeCheckout></div>*/}
     </div>
   )
 }

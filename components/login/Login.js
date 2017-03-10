@@ -8,11 +8,8 @@ import Logout from './Logout'
 
 class Login extends React.Component {
 
-  handleSubmit = e => {
-    e.preventDefault()
-    const email = this.props.form.login.values.email
-    const password = this.props.form.login.values.password
-    this.props.dispatch(login(email, password))
+  handleLogin = values => {
+    return this.props.dispatch(login(values.email, values.password))
   }
 
   handleLogout = e => {
@@ -23,7 +20,7 @@ class Login extends React.Component {
   render() {
 
     if(!this.props.auth) {
-      return <LoginFrom handleSubmit={this.handleSubmit} />
+      return <LoginFrom handleLogin={this.handleLogin} />
     } else {
       return <Logout handleLogout={this.handleLogout} />
     }

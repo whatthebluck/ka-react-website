@@ -11,7 +11,7 @@ exports.default = function () {
 
   switch (action.type) {
     case 'AUTH_SUCCESS':
-      return true;
+      return action.userId;
     case 'REMOVE_AUTH':
       return false;
     default:

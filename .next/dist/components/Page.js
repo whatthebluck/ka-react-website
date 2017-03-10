@@ -24,10 +24,6 @@ var _reactRedux = require('react-redux');
 
 require('isomorphic-fetch');
 
-var _reactStripeCheckout = require('react-stripe-checkout');
-
-var _reactStripeCheckout2 = _interopRequireDefault(_reactStripeCheckout);
-
 var _Login = require('./login/Login');
 
 var _Login2 = _interopRequireDefault(_Login);
@@ -36,6 +32,8 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var _this = undefined,
     _jsxFileName = '/Users/stephen.bluck/Documents/repos/ka-react-website/components/Page.js';
+// import StripeCheckout from 'react-stripe-checkout';
+
 
 // TODO - move to an action
 var onToken = function () {
@@ -91,22 +89,7 @@ var Page = function Page(props) {
       fileName: _jsxFileName,
       lineNumber: 21
     }
-  }), _react2.default.createElement('div', {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 23
-    }
-  }, 'Purchase single product ', _react2.default.createElement(_reactStripeCheckout2.default, {
-    token: onToken,
-    stripeKey: 'pk_test_fMqC4KwF8gDKdeO6HtmBFWTT',
-    amount: 6000,
-    currency: 'USD',
-    panelLabel: 'Pay',
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 23
-    }
-  }, 'Test')));
+  }));
 };
 
 exports.default = (0, _reactRedux.connect)(function (state) {

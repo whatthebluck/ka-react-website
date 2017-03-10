@@ -3,15 +3,17 @@ import { compose } from 'redux'
 import { connect } from 'react-redux'
 import { Field, reduxForm } from 'redux-form';
 
-const Login = ({ form, handleSubmit, login}) => {
+const Login = ({ form, handleSubmit, login, handleLogin, error}) => {
+
   return (
     <div>
-      <form method="POST" onSubmit={handleSubmit}>
+      { login.loading }
+      <form method="POST" onSubmit={handleSubmit(handleLogin)}>
         <Field component="input" type="text" name="email"/>
         <Field component="input" type="password" name="password"/>
         <input type="submit" value="Log in"/>
       </form>
-      {login.error && <strong>{login.error}</strong>}
+      {error && <strong>{error}</strong>}
     </div>
   )
 }

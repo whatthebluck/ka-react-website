@@ -11,8 +11,7 @@ var _extends3 = _interopRequireDefault(_extends2);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var initialState = {
-  loading: false,
-  error: null
+  loading: false
 };
 
 exports.default = function () {
@@ -22,12 +21,7 @@ exports.default = function () {
   switch (action.type) {
     case 'LOADING':
       return (0, _extends3.default)({}, state, {
-        error: null,
         loading: action.loading
-      });
-    case 'ERROR':
-      return (0, _extends3.default)({}, state, {
-        error: action.message
       });
     default:
       return state;
