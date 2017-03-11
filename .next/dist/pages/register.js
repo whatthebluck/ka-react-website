@@ -48,9 +48,13 @@ var _Page = require('../components/Page');
 
 var _Page2 = _interopRequireDefault(_Page);
 
+var _Register = require('../components/register/Register');
+
+var _Register2 = _interopRequireDefault(_Register);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var _jsxFileName = '/Users/stephen.bluck/Documents/repos/ka-react-website/pages/index.js?entry';
+var _jsxFileName = '/Users/stephen.bluck/Documents/repos/ka-react-website/pages/register.js?entry';
 // import Link from 'next/link'
 
 
@@ -66,11 +70,16 @@ var Index = function (_React$Component) {
   (0, _createClass3.default)(Index, [{
     key: 'render',
     value: function render() {
-      return _react2.default.createElement(_Page2.default, { title: 'Home Page', __source: {
+      return _react2.default.createElement(_Page2.default, { title: 'Register', __source: {
           fileName: _jsxFileName,
-          lineNumber: 18
+          lineNumber: 19
         }
-      });
+      }, _react2.default.createElement(_Register2.default, {
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 20
+        }
+      }));
     }
   }], [{
     key: 'getInitialProps',

@@ -4,92 +4,82 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _regenerator = require('babel-runtime/regenerator');
-
-var _regenerator2 = _interopRequireDefault(_regenerator);
-
-var _stringify = require('babel-runtime/core-js/json/stringify');
-
-var _stringify2 = _interopRequireDefault(_stringify);
-
-var _asyncToGenerator2 = require('babel-runtime/helpers/asyncToGenerator');
-
-var _asyncToGenerator3 = _interopRequireDefault(_asyncToGenerator2);
-
 var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
 var _reactRedux = require('react-redux');
 
+var _link = require('next/dist/lib/link.js');
+
+var _link2 = _interopRequireDefault(_link);
+
 require('isomorphic-fetch');
-
-var _Login = require('./login/Login');
-
-var _Login2 = _interopRequireDefault(_Login);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var _this = undefined,
-    _jsxFileName = '/Users/stephen.bluck/Documents/repos/ka-react-website/components/Page.js';
-// import StripeCheckout from 'react-stripe-checkout';
+var _jsxFileName = '/Users/stephen.bluck/Documents/repos/ka-react-website/components/Page.js';
 
-
-// TODO - move to an action
-var onToken = function () {
-  var _ref = (0, _asyncToGenerator3.default)(_regenerator2.default.mark(function _callee(token) {
-    var charge;
-    return _regenerator2.default.wrap(function _callee$(_context) {
-      while (1) {
-        switch (_context.prev = _context.next) {
-          case 0:
-            _context.next = 2;
-            return fetch('http://localhost:3001/charge', {
-              method: 'POST',
-              body: (0, _stringify2.default)({ token: token.id })
-            });
-
-          case 2:
-            charge = _context.sent;
-            _context.t0 = console;
-            _context.next = 6;
-            return charge.json();
-
-          case 6:
-            _context.t1 = _context.sent;
-
-            _context.t0.log.call(_context.t0, _context.t1);
-
-          case 8:
-          case 'end':
-            return _context.stop();
-        }
-      }
-    }, _callee, _this);
-  }));
-
-  return function onToken(_x) {
-    return _ref.apply(this, arguments);
-  };
-}();
 
 var Page = function Page(props) {
   return _react2.default.createElement('div', {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 18
+      lineNumber: 7
     }
   }, _react2.default.createElement('h1', {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 19
+      lineNumber: 8
     }
-  }, props.title), _react2.default.createElement(_Login2.default, {
+  }, props.title), _react2.default.createElement('ul', {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 21
+      lineNumber: 10
     }
-  }));
+  }, _react2.default.createElement('li', {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 11
+    }
+  }, _react2.default.createElement(_link2.default, { href: '/index', prefetch: true, __source: {
+      fileName: _jsxFileName,
+      lineNumber: 11
+    }
+  }, _react2.default.createElement('a', {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 11
+    }
+  }, 'Index'))), _react2.default.createElement('li', {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 12
+    }
+  }, _react2.default.createElement(_link2.default, { href: '/login?foo=bar', prefetch: true, __source: {
+      fileName: _jsxFileName,
+      lineNumber: 12
+    }
+  }, _react2.default.createElement('a', {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 12
+    }
+  }, 'Login'))), _react2.default.createElement('li', {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 13
+    }
+  }, _react2.default.createElement(_link2.default, { href: '/register', prefetch: true, __source: {
+      fileName: _jsxFileName,
+      lineNumber: 13
+    }
+  }, _react2.default.createElement('a', {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 13
+    }
+  }, 'Register')))), props.children);
 };
 
 exports.default = (0, _reactRedux.connect)(function (state) {

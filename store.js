@@ -5,12 +5,14 @@ import './lib/init-firebase'
 
 import { reducer as formReducer } from 'redux-form'
 import LoginReducer from './components/login/LoginReducer'
+import RegisterReducer from './components/register/RegisterReducer'
 import AuthReducer from './components/auth/AuthReducer'
 
 
 const reducers = combineReducers({
   auth: AuthReducer,
   login: LoginReducer,
+  register: RegisterReducer,
   form: formReducer,
 })
 

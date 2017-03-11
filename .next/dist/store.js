@@ -23,6 +23,10 @@ var _LoginReducer = require('./components/login/LoginReducer');
 
 var _LoginReducer2 = _interopRequireDefault(_LoginReducer);
 
+var _RegisterReducer = require('./components/register/RegisterReducer');
+
+var _RegisterReducer2 = _interopRequireDefault(_RegisterReducer);
+
 var _AuthReducer = require('./components/auth/AuthReducer');
 
 var _AuthReducer2 = _interopRequireDefault(_AuthReducer);
@@ -32,6 +36,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var reducers = (0, _redux.combineReducers)({
   auth: _AuthReducer2.default,
   login: _LoginReducer2.default,
+  register: _RegisterReducer2.default,
   form: _reduxForm.reducer
 });
 

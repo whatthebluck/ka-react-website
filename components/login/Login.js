@@ -1,6 +1,5 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import 'isomorphic-fetch'
 import { login, logout } from './LoginActions'
 import LoginFrom from './LoginForm'
 import Logout from './Logout'
