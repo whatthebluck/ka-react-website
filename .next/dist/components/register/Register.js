@@ -60,7 +60,6 @@ var Register = function (_React$Component) {
     }
 
     return _ret = (_temp = (_this = (0, _possibleConstructorReturn3.default)(this, (_ref = Register.__proto__ || (0, _getPrototypeOf2.default)(Register)).call.apply(_ref, [this].concat(args))), _this), _this.handleRegister = function (values) {
-
       return _this.props.dispatch((0, _RegisterActions.register)(values));
     }, _temp), (0, _possibleConstructorReturn3.default)(_this, _ret);
   }
@@ -70,7 +69,7 @@ var Register = function (_React$Component) {
     value: function render() {
       return _react2.default.createElement(_RegisterForm2.default, { handleRegister: this.handleRegister, __source: {
           fileName: _jsxFileName,
-          lineNumber: 16
+          lineNumber: 14
         }
       });
     }

@@ -13,12 +13,11 @@ class Login extends React.Component {
 
   handleLogout = e => {
     e.preventDefault()
-    this.props.dispatch(logout)
+    this.props.dispatch(logout())
   }
 
   render() {
-
-    if(!this.props.auth) {
+    if(!this.props.user) {
       return <LoginFrom handleLogin={this.handleLogin} />
     } else {
       return <Logout handleLogout={this.handleLogout} />
@@ -27,7 +26,6 @@ class Login extends React.Component {
 }
 
 
-// container part
 function mapStateToProps(state) {
   return {...state};
 }

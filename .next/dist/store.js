@@ -34,7 +34,7 @@ var _AuthReducer2 = _interopRequireDefault(_AuthReducer);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var reducers = (0, _redux.combineReducers)({
-  auth: _AuthReducer2.default,
+  user: _AuthReducer2.default,
   login: _LoginReducer2.default,
   register: _RegisterReducer2.default,
   form: _reduxForm.reducer

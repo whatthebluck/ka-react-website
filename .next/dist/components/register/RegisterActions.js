@@ -13,10 +13,6 @@ var _asyncToGenerator2 = require('babel-runtime/helpers/asyncToGenerator');
 
 var _asyncToGenerator3 = _interopRequireDefault(_asyncToGenerator2);
 
-var _reactCookie = require('react-cookie');
-
-var _reactCookie2 = _interopRequireDefault(_reactCookie);
-
 var _firebase = require('firebase');
 
 var _firebase2 = _interopRequireDefault(_firebase);
@@ -24,6 +20,8 @@ var _firebase2 = _interopRequireDefault(_firebase);
 require('../../lib/init-firebase');
 
 var _reduxForm = require('redux-form');
+
+var _AuthActions = require('../auth/AuthActions');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -55,29 +53,27 @@ var register = exports.register = function register(_ref) {
               return user.updateProfile({ displayName: displayName });
 
             case 8:
-
-              _reactCookie2.default.save('userId', user.uid, { path: '/' });
-
-              dispatch({ type: "AUTH_SUCCESS", userId: user.uid });
-
-              dispatch({ type: "LOADING", loading: false });
-
-              _context.next = 17;
+              (0, _AuthActions.setUser)(user.uid)(dispatch);
+              _context.next = 15;
               break;
 
-            case 13:
-              _context.prev = 13;
+            case 11:
+              _context.prev = 11;
               _context.t0 = _context['catch'](1);
 
               dispatch({ type: "LOADING", loading: false });
               throw new _reduxForm.SubmissionError({ _error: _context.t0.message });
 
-            case 17:
+            case 15:
+
+              dispatch({ type: "LOADING", loading: false });
+
+            case 16:
             case 'end':
               return _context.stop();
           }
         }
-      }, _callee, _this, [[1, 13]]);
+      }, _callee, _this, [[1, 11]]);
     }));
 
     return function (_x) {

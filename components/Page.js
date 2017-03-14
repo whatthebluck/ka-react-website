@@ -9,7 +9,7 @@ const Page = (props) => {
 
       <ul>
         <li><Link href="/index" prefetch><a>Index</a></Link></li>
-        <li><Link href="/login?foo=bar" prefetch><a>Login</a></Link></li>
+        <li><Link href="/login" prefetch><a>Login</a></Link></li>
         <li><Link href="/register" prefetch><a>Register</a></Link></li>
       </ul>
 
@@ -20,4 +20,8 @@ const Page = (props) => {
 }
 
 
-export default connect(state => state)(Page)
+function mapStateToProps(state) {
+  return {...state};
+}
+
+export default connect(mapStateToProps)(Page)

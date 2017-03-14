@@ -10,9 +10,9 @@ exports.default = function () {
   var action = arguments[1];
 
   switch (action.type) {
-    case 'AUTH_SUCCESS':
+    case 'SET_USER':
       return action.userId;
-    case 'REMOVE_AUTH':
+    case 'REMOVE_USER':
       return false;
     default:
       return state;

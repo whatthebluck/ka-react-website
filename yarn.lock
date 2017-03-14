@@ -2200,6 +2200,10 @@ next-redux-wrapper@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/next-redux-wrapper/-/next-redux-wrapper-1.0.0.tgz#8ddc993f6609ba85958d21afba8f5926339ce7b6"
 
+next-universal-redirect@^0.1.1:
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/next-universal-redirect/-/next-universal-redirect-0.1.1.tgz#7d439dc0373539d5d0618e9544692451a6acc78d"
+
 next@beta:
   version "2.0.0-beta.36"
   resolved "https://registry.yarnpkg.com/next/-/next-2.0.0-beta.36.tgz#4f7236d39b0ca05257882aaba24dd786cc6f26ea"

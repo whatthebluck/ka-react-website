@@ -7,10 +7,8 @@ import RegisterFrom from './RegisterForm'
 class Register extends React.Component {
 
   handleRegister = values => {
-
     return this.props.dispatch(register(values))
   }
-
 
   render() {
     return <RegisterFrom handleRegister={this.handleRegister} />

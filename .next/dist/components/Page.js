@@ -4,6 +4,10 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
+var _extends2 = require('babel-runtime/helpers/extends');
+
+var _extends3 = _interopRequireDefault(_extends2);
+
 var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
@@ -56,7 +60,7 @@ var Page = function Page(props) {
       fileName: _jsxFileName,
       lineNumber: 12
     }
-  }, _react2.default.createElement(_link2.default, { href: '/login?foo=bar', prefetch: true, __source: {
+  }, _react2.default.createElement(_link2.default, { href: '/login', prefetch: true, __source: {
       fileName: _jsxFileName,
       lineNumber: 12
     }
@@ -82,6 +86,8 @@ var Page = function Page(props) {
   }, 'Register')))), props.children);
 };
 
-exports.default = (0, _reactRedux.connect)(function (state) {
-  return state;
-})(Page);
+function mapStateToProps(state) {
+  return (0, _extends3.default)({}, state);
+}
+
+exports.default = (0, _reactRedux.connect)(mapStateToProps)(Page);

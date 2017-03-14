@@ -10,7 +10,7 @@ import AuthReducer from './components/auth/AuthReducer'
 
 
 const reducers = combineReducers({
-  auth: AuthReducer,
+  user: AuthReducer,
   login: LoginReducer,
   register: RegisterReducer,
   form: formReducer,

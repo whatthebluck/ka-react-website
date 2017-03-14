@@ -30,15 +30,17 @@ var _reactRedux = require('react-redux');
 
 var _reduxForm = require('redux-form');
 
+var _reactStripeCheckout = require('react-stripe-checkout');
+
+var _reactStripeCheckout2 = _interopRequireDefault(_reactStripeCheckout);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var _this = undefined,
     _jsxFileName = '/Users/stephen.bluck/Documents/repos/ka-react-website/components/register/RegisterForm.js';
 
-// import StripeCheckout from 'react-stripe-checkout';
-
 var RegisterForm = function RegisterForm(_ref) {
-  var form = _ref.form,
+  var email = _ref.email,
       handleSubmit = _ref.handleSubmit,
       register = _ref.register,
       handleRegister = _ref.handleRegister,
@@ -107,14 +109,31 @@ var RegisterForm = function RegisterForm(_ref) {
       fileName: _jsxFileName,
       lineNumber: 26
     }
-  }), _react2.default.createElement('input', { type: 'submit', value: 'Register', __source: {
+  }), _react2.default.createElement(_reactStripeCheckout2.default, {
+    token: onToken,
+    email: email,
+    stripeKey: 'pk_test_fMqC4KwF8gDKdeO6HtmBFWTT',
+    amount: 6000,
+    currency: 'USD',
+    panelLabel: 'Pay',
+    opened: function opened() {
+      return console.log('open!');
+    },
+    closed: function closed() {
+      return console.log('closed!');
+    },
+    __source: {
       fileName: _jsxFileName,
       lineNumber: 27
     }
-  })), error && _react2.default.createElement('strong', {
+  }, _react2.default.createElement('input', { type: 'submit', value: 'Register', __source: {
+      fileName: _jsxFileName,
+      lineNumber: 37
+    }
+  }))), error && _react2.default.createElement('strong', {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 29
+      lineNumber: 40
     }
   }, error));
 };
@@ -124,4 +143,8 @@ function mapStateToProps(state) {
   return (0, _extends3.default)({}, state);
 }
 
-exports.default = (0, _redux.compose)((0, _reduxForm.reduxForm)({ form: 'register' }), (0, _reactRedux.connect)(mapStateToProps))(RegisterForm);
+var selector = (0, _reduxForm.formValueSelector)('register');
+
+exports.default = (0, _redux.compose)((0, _reduxForm.reduxForm)({ form: 'register' }), (0, _reactRedux.connect)(function (state) {
+  return { email: selector(state, 'email') };
+}), (0, _reactRedux.connect)(mapStateToProps))(RegisterForm);

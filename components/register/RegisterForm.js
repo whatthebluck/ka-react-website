@@ -1,10 +1,10 @@
 import React from 'react'
 import { compose } from 'redux'
 import { connect } from 'react-redux'
-import { Field, reduxForm } from 'redux-form';
-// import StripeCheckout from 'react-stripe-checkout';
+import { Field, reduxForm, formValueSelector } from 'redux-form';
+import StripeCheckout from 'react-stripe-checkout';
 
-const RegisterForm = ({ form, handleSubmit, register, handleRegister, error}) => {
+const RegisterForm = ({ email, handleSubmit, register, handleRegister, error}) => {
 
   // TODO - move to an action
   const onToken = async (token) => {
@@ -24,19 +24,21 @@ const RegisterForm = ({ form, handleSubmit, register, handleRegister, error}) =>
         <Field component="input" type="text" name="lastName"/>
         <Field component="input" type="text" name="email"/>
         <Field component="input" type="password" name="password"/>
-        <input type="submit" value="Register"/>
+        <StripeCheckout
+          token={onToken}
+          email={email}
+          stripeKey="pk_test_fMqC4KwF8gDKdeO6HtmBFWTT"
+          amount={6000}
+          currency='USD'
+          panelLabel="Pay"
+          opened={() => console.log('open!')}
+          closed={() => console.log('closed!')}
+        >
+          <input type="submit" value="Register"/>
+        </StripeCheckout>
       </form>
       {error && <strong>{error}</strong>}
 
-      {/*<div>Purchase single product <StripeCheckout
-       token={onToken}
-       stripeKey="pk_test_fMqC4KwF8gDKdeO6HtmBFWTT"
-       amount={6000}
-       currency='USD'
-       panelLabel="Pay"
-       >
-       Test
-       </StripeCheckout></div>*/}
 
     </div>
   )
@@ -48,7 +50,12 @@ function mapStateToProps(state) {
   return {...state};
 }
 
+const selector = formValueSelector('register')
+
 export default compose(
   reduxForm({ form: 'register' }),
+  connect(state => {
+    return {email:  selector(state, 'email')}
+  }),
   connect(mapStateToProps)
 )(RegisterForm)
