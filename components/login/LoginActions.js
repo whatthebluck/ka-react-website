@@ -1,6 +1,6 @@
 import firebase from 'firebase'
 import { SubmissionError } from 'redux-form'
-import { setUser , removeUser} from '../auth/AuthActions'
+import cookie from 'react-cookie'
 
 export const login = (email, password) =>  async dispatch => {
 
@@ -10,7 +10,8 @@ export const login = (email, password) =>  async dispatch => {
     const user = await firebase.auth()
       .signInWithEmailAndPassword(email, password)
 
-    setUser(user.uid)(dispatch)
+    cookie.save('userId', user.uid, { path: '/' })
+    dispatch({type: 'SET_USER', userId: user.uid})
 
   } catch(e) {
     dispatch({type: "LOADING", loading: false})
@@ -25,6 +26,7 @@ export const login = (email, password) =>  async dispatch => {
 export const logout = () => async dispatch => {
   dispatch({type: "LOADING", loading: true})
   await firebase.auth().signOut()
-  removeUser()(dispatch)
+  cookie.remove('userId', { path: '/' })
+  dispatch({type: 'REMOVE_USER'})
   dispatch({type: "LOADING", loading: false})
 }

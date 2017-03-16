@@ -4,28 +4,22 @@ import { connect } from 'react-redux'
 import { Field, reduxForm, formValueSelector } from 'redux-form';
 import StripeCheckout from 'react-stripe-checkout';
 
-const RegisterForm = ({ email, handleSubmit, register, handleRegister, error}) => {
 
-  // TODO - move to an action
-  const onToken = async (token) => {
-    const charge = await fetch('http://localhost:3001/charge', {
-      method: 'POST',
-      body: JSON.stringify({ token: token.id })
-    })
-    console.log(await charge.json())
-  }
+const RegisterForm = (props) => {
 
+  const { user, email, password, firstName, lastName, register, handleRegister, error} = props
 
   return (
     <div>
+      User: { user }
       { register.loading }
-      <form method="POST" onSubmit={handleSubmit(handleRegister)}>
+      <form method="POST" onSubmit={e => e.preventDefault()}>
         <Field component="input" type="text" name="firstName"/>
         <Field component="input" type="text" name="lastName"/>
         <Field component="input" type="text" name="email"/>
         <Field component="input" type="password" name="password"/>
         <StripeCheckout
-          token={onToken}
+          token={handleRegister(email, password, firstName, lastName)}
           email={email}
           stripeKey="pk_test_fMqC4KwF8gDKdeO6HtmBFWTT"
           amount={6000}
@@ -38,8 +32,6 @@ const RegisterForm = ({ email, handleSubmit, register, handleRegister, error}) =
         </StripeCheckout>
       </form>
       {error && <strong>{error}</strong>}
-
-
     </div>
   )
 }
@@ -55,7 +47,12 @@ const selector = formValueSelector('register')
 export default compose(
   reduxForm({ form: 'register' }),
   connect(state => {
-    return {email:  selector(state, 'email')}
+    return {
+      email:  selector(state, 'email'),
+      password:  selector(state, 'password'),
+      firstName:  selector(state, 'firstName'),
+      lastName:  selector(state, 'lastName'),
+    }
   }),
   connect(mapStateToProps)
 )(RegisterForm)

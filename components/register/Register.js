@@ -1,13 +1,27 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { register } from './RegisterActions'
+import { login } from '../login/LoginActions'
 import RegisterFrom from './RegisterForm'
 
 
 class Register extends React.Component {
 
-  handleRegister = values => {
-    return this.props.dispatch(register(values))
+  handleRegister = (email, password, firstName, lastName) => async token => {
+
+    await fetch('http://localhost:3001/user/create', {
+      method: 'POST',
+      body: JSON.stringify({
+        token: token.id,
+        email,
+        password,
+        firstName,
+        lastName
+      })
+    })
+
+
+    return this.props.dispatch(login(email, password))
+
   }
 
   render() {
@@ -18,7 +32,7 @@ class Register extends React.Component {
 
 // container part
 function mapStateToProps(state) {
-  return {...state};
+  return {...state}
 }
 
 export default connect(mapStateToProps)(Register);

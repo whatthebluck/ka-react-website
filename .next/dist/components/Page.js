@@ -46,7 +46,7 @@ var Page = function Page(props) {
       fileName: _jsxFileName,
       lineNumber: 11
     }
-  }, _react2.default.createElement(_link2.default, { href: '/index', prefetch: true, __source: {
+  }, _react2.default.createElement(_link2.default, { href: '/index', __source: {
       fileName: _jsxFileName,
       lineNumber: 11
     }
@@ -60,7 +60,7 @@ var Page = function Page(props) {
       fileName: _jsxFileName,
       lineNumber: 12
     }
-  }, _react2.default.createElement(_link2.default, { href: '/login', prefetch: true, __source: {
+  }, _react2.default.createElement(_link2.default, { href: '/login', __source: {
       fileName: _jsxFileName,
       lineNumber: 12
     }
@@ -74,7 +74,7 @@ var Page = function Page(props) {
       fileName: _jsxFileName,
       lineNumber: 13
     }
-  }, _react2.default.createElement(_link2.default, { href: '/register', prefetch: true, __source: {
+  }, _react2.default.createElement(_link2.default, { href: '/register', __source: {
       fileName: _jsxFileName,
       lineNumber: 13
     }

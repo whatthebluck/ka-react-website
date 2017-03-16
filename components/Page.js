@@ -8,9 +8,9 @@ const Page = (props) => {
       <h1>{props.title}</h1>
 
       <ul>
-        <li><Link href="/index" prefetch><a>Index</a></Link></li>
-        <li><Link href="/login" prefetch><a>Login</a></Link></li>
-        <li><Link href="/register" prefetch><a>Register</a></Link></li>
+        <li><Link href="/index" ><a>Index</a></Link></li>
+        <li><Link href="/login" ><a>Login</a></Link></li>
+        <li><Link href="/register"><a>Register</a></Link></li>
       </ul>
 
       { props.children }

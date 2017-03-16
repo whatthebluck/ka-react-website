@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { login, logout } from './LoginActions'
 import LoginFrom from './LoginForm'
 import Logout from './Logout'
+import {compose} from "redux";
 
 
 class Login extends React.Component {
@@ -26,8 +27,6 @@ class Login extends React.Component {
 }
 
 
-function mapStateToProps(state) {
-  return {...state};
-}
-
-export default connect(mapStateToProps)(Login);
+export default compose(
+  connect(state => ({...state}))
+)(Login)

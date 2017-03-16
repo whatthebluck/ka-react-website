@@ -1,5 +1,7 @@
 // import Link from 'next/link'
 import React from 'react'
+import { compose } from 'redux'
+import { connect } from 'react-redux'
 import withRedux from 'next-redux-wrapper'
 import { initStore } from '../store'
 import { auth } from '../components/auth/AuthActions'
@@ -20,6 +22,7 @@ class Index extends React.Component {
   }
 }
 
-export default withRedux(initStore)(Index)
-
-
+export default compose(
+  withRedux(initStore),
+  connect(state => ({...state}))
+)(Index)
