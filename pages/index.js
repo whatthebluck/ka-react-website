@@ -5,14 +5,17 @@ import { connect } from 'react-redux'
 import withRedux from 'next-redux-wrapper'
 import { initStore } from '../store'
 import { auth } from '../components/auth/AuthActions'
-import Page from '../components/Page'
+import Page from '../components/Page/Page'
 
 
 class Index extends React.Component {
 
   static async getInitialProps ({ req, store, isServer }) {
     await store.dispatch(auth(req))
-    return { isServer }
+
+    const state = store.getState()
+
+    return { ...state, isServer }
   }
 
   render () {

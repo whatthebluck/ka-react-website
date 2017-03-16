@@ -6,18 +6,16 @@ import withRedux from 'next-redux-wrapper'
 import { connect } from 'react-redux'
 import { initStore } from '../store'
 import { auth } from '../components/auth/AuthActions'
-import Page from '../components/Page'
+import Page from '../components/Page/Page'
 import Register from '../components/register/Register'
 
 
 class Index extends React.Component {
 
   static async getInitialProps ({ req, res, store, isServer }) {
-    const state = store.getState();
-
     await store.dispatch(auth(req))
-    console.log(state)
 
+    const state = store.getState()
 
     if(state.user) {
       if(req) {
@@ -31,15 +29,10 @@ class Index extends React.Component {
     return { ...state, isServer }
   }
 
-  componentDidMount(bla) {
-    console.log(this.props, this.state, bla)
-  }
-
   render () {
     return (
       <Page title="Register">
 
-        { JSON.stringify(this.props, null, 2)}
         <Register />
       </Page>
     )
