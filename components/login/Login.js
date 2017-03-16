@@ -18,7 +18,7 @@ class Login extends React.Component {
   }
 
   render() {
-    if(!this.props.user) {
+    if(!this.props.user.id) {
       return <LoginFrom handleLogin={this.handleLogin} />
     } else {
       return <Logout handleLogout={this.handleLogout} />

@@ -7,7 +7,7 @@ const Login = ({ form, handleSubmit, login, handleLogin, error}) => {
 
   return (
     <div>
-      { login.loading }
+      { login.loading && 'loading....'}
       <form method="POST" onSubmit={handleSubmit(handleLogin)}>
         <Field component="input" type="text" name="email"/>
         <Field component="input" type="password" name="password"/>

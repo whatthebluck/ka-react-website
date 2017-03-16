@@ -1,11 +1,15 @@
-export const auth = req => dispatch => {
+export const setUseerIfAuthed = req => dispatch => {
 
-  const searchCookies = req ? req.headers.cookie.match(/userId=\w+/g) : null
+  if(req && !req.headers.cookie) return
 
-  if(searchCookies) {
+  const searchUserId = req ? req.headers.cookie.match(/id=\w+/g) : null
+  const searchEmail = req ? req.headers.cookie.match(/email=\w+/g) : null
+
+  if(req) {
     dispatch({
       type: 'SET_USER',
-      userId: searchCookies[0].replace('userId=', '')
+      id: searchUserId && searchUserId[0].replace('id=', ''),
+      email: searchEmail && searchEmail[0].replace('email=', ''),
     })
   }
 

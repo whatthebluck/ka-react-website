@@ -7,7 +7,6 @@ const Menu = (props) => {
 
   const handleLogout = e => {
     e.preventDefault()
-    console.log('test')
     props.dispatch(logout())
   }
 
@@ -19,33 +18,40 @@ const Menu = (props) => {
       show: true
     },
     {
+      id: 'themes',
+      name: 'Themes',
+      props: { href: '/themes'},
+      show: true
+    },
+    {
       id: 'login',
       name: 'Login',
       props: {href: '/login'},
-      show: !props.user
+      show: !props.user.id
     },
     {
       id: 'logout',
       name: 'Logout',
       props: { href: '#', onClick: handleLogout },
-      show: props.user
+      show: props.user.id
     },
     {
       id: 'register',
       name: 'Register',
       props: { href: '/register' },
-      show: !props.user
+      show: !props.user.id
     },
     {
       id: 'account',
       name: 'My Account',
       props: { href: '/account' },
-      show: props.user
+      show: props.user.id
     },
   ]
 
   return (
     <ul>
+
       { links.map(link =>
         link.show && <li key={link.id}>
           { !link.props.onClick && <Link { ...link.props } prefetch><a>{link.name}</a></Link>}

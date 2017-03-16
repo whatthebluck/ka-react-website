@@ -7,12 +7,12 @@ import StripeCheckout from 'react-stripe-checkout';
 
 const RegisterForm = (props) => {
 
-  const { user, email, password, firstName, lastName, register, handleRegister, error} = props
+  const { userId, email, password, firstName, lastName, register, handleRegister, error} = props
 
   return (
     <div>
-      User: { user }
-      { register.loading }
+      User: { userId }
+      { register.loading && 'loading....'}
       <form method="POST" onSubmit={e => e.preventDefault()}>
         <Field component="input" type="text" name="firstName"/>
         <Field component="input" type="text" name="lastName"/>

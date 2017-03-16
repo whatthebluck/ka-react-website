@@ -5,7 +5,7 @@ import Router from 'next/router'
 import withRedux from 'next-redux-wrapper'
 import { connect } from 'react-redux'
 import { initStore } from '../store'
-import { auth } from '../components/auth/AuthActions'
+import { setUseerIfAuthed } from '../components/auth/AuthActions'
 import Page from '../components/Page/Page'
 import Register from '../components/register/Register'
 
@@ -13,11 +13,11 @@ import Register from '../components/register/Register'
 class Index extends React.Component {
 
   static async getInitialProps ({ req, res, store, isServer }) {
-    await store.dispatch(auth(req))
+    await store.dispatch(setUseerIfAuthed(req))
 
     const state = store.getState()
 
-    if(state.user) {
+    if(state.user.id) {
       if(req) {
         res.writeHead(301, { Location: '/' })
         res.end()
@@ -32,7 +32,6 @@ class Index extends React.Component {
   render () {
     return (
       <Page title="Register">
-
         <Register />
       </Page>
     )

@@ -1,12 +1,13 @@
 // import Link from 'next/link'
 import React from 'react'
 import { compose } from 'redux'
+import Link from 'next/link'
 import { connect } from 'react-redux'
 import withRedux from 'next-redux-wrapper'
 import { initStore } from '../store'
-import { setUseerIfAuthed } from '../components/auth/AuthActions'
 import Page from '../components/Page/Page'
-
+import themes from '../config/themes'
+import {setUseerIfAuthed} from "../components/auth/AuthActions";
 
 class Index extends React.Component {
 
@@ -16,10 +17,21 @@ class Index extends React.Component {
     return { ...state, isServer }
   }
 
-
   render () {
     return (
-      <Page title="Home Page" />
+      <Page title="Koken Themes">
+        <ul>
+          {
+            themes.map(theme =>
+              <li key={theme.name.toLowerCase()}>
+                <h2><Link href={`/theme?id=${theme.id}`} as={`/themes/${theme.id}`} prefetch><a>{theme.name}</a></Link></h2>
+                <p>{theme.excerpt}</p>
+                <p>${(theme.price / 100)}</p>
+              </li>
+            )
+          }
+        </ul>
+      </Page>
     )
   }
 }
