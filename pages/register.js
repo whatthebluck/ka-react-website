@@ -6,7 +6,7 @@ import withRedux from 'next-redux-wrapper'
 import { connect } from 'react-redux'
 import { initStore } from '../store'
 import { setUserIfAuthed } from '../components/auth/AuthActions'
-import Page from '../components/Page/Page'
+import Page from '../components/page/Page'
 import Register from '../components/register/Register'
 
 

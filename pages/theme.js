@@ -5,10 +5,9 @@ import { connect } from 'react-redux'
 import withRedux from 'next-redux-wrapper'
 import StripeCheckout from 'react-stripe-checkout';
 import { initStore } from '../store'
-import Page from '../components/Page/Page'
+import Page from '../components/page/Page'
 import themes from '../config/themes'
 import stripe from '../config/stripe'
-
 import {setUserIfAuthed} from "../components/auth/AuthActions";
 
 
@@ -25,7 +24,7 @@ class Index extends React.Component {
 
   }
 
-
+  // TODO: Toggle buy/download button
   render () {
     return (
       <Page title={ this.props.theme.name }>

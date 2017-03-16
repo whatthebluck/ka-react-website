@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 import withRedux from 'next-redux-wrapper'
 import { initStore } from '../store'
 import { setUserIfAuthed } from '../components/auth/AuthActions'
-import Page from '../components/Page/Page'
+import Page from '../components/page/Page'
 
 
 class Index extends React.Component {

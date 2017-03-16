@@ -9,20 +9,16 @@ const handle = app.getRequestHandler()
 const route = pathMatch()
 const match = route('/themes/:id')
 
-console.log('test')
-
 app.prepare()
   .then(() => {
 
     createServer((req, res) => {
       const {pathname} = parse(req.url)
       const params = match(pathname)
-      console.log(params)
       if (params === false) {
         handle(req, res)
         return
       }
-
       app.render(req, res, '/theme', params)
     })
       .listen(3000, (err) => {

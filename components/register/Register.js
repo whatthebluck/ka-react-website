@@ -2,26 +2,20 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { login } from '../login/LoginActions'
 import RegisterFrom from './RegisterForm'
-
+import { SubmissionError } from 'redux-form';
+import fetch from 'isomorphic-fetch'
 
 class Register extends React.Component {
 
-  handleRegister = (email, password, firstName, lastName) => async token => {
-
-    await fetch('http://localhost:3001/user/create', {
+  handleRegister = async values => {
+    const { email, password } = values
+    const request = await fetch('http://localhost:3001/user/create', {
       method: 'POST',
-      body: JSON.stringify({
-        token: token.id,
-        email,
-        password,
-        firstName,
-        lastName
-      })
+      body: JSON.stringify(values)
     })
-
-
+    const data = await request.json()
+    if(!request.ok) throw new SubmissionError({_error: data.message})
     return this.props.dispatch(login(email, password))
-
   }
 
   render() {
@@ -29,10 +23,4 @@ class Register extends React.Component {
   }
 }
 
-
-// container part
-function mapStateToProps(state) {
-  return {...state}
-}
-
-export default connect(mapStateToProps)(Register);
+export default connect(state => ({...state}))(Register);
