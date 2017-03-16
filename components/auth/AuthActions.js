@@ -1,4 +1,4 @@
-export const setUseerIfAuthed = req => dispatch => {
+export const setUserIfAuthed = req => dispatch => {
 
   if(req && !req.headers.cookie) return
 

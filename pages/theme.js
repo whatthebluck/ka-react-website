@@ -9,13 +9,13 @@ import Page from '../components/Page/Page'
 import themes from '../config/themes'
 import stripe from '../config/stripe'
 
-import {setUseerIfAuthed} from "../components/auth/AuthActions";
+import {setUserIfAuthed} from "../components/auth/AuthActions";
 
 
 class Index extends React.Component {
 
   static async getInitialProps ({ req, store, isServer, query: { id }  }) {
-    await store.dispatch(setUseerIfAuthed(req))
+    await store.dispatch(setUserIfAuthed(req))
     const state = store.getState()
     const theme = themes.find(theme => theme.id === id)
     return { ...state, isServer, theme }

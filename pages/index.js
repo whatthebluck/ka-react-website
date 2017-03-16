@@ -4,14 +4,14 @@ import { compose } from 'redux'
 import { connect } from 'react-redux'
 import withRedux from 'next-redux-wrapper'
 import { initStore } from '../store'
-import { setUseerIfAuthed } from '../components/auth/AuthActions'
+import { setUserIfAuthed } from '../components/auth/AuthActions'
 import Page from '../components/Page/Page'
 
 
 class Index extends React.Component {
 
   static async getInitialProps ({ req, store, isServer }) {
-    await store.dispatch(setUseerIfAuthed(req))
+    await store.dispatch(setUserIfAuthed(req))
     const state = store.getState()
     return { ...state, isServer }
   }

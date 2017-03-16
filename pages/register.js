@@ -5,7 +5,7 @@ import Router from 'next/router'
 import withRedux from 'next-redux-wrapper'
 import { connect } from 'react-redux'
 import { initStore } from '../store'
-import { setUseerIfAuthed } from '../components/auth/AuthActions'
+import { setUserIfAuthed } from '../components/auth/AuthActions'
 import Page from '../components/Page/Page'
 import Register from '../components/register/Register'
 
@@ -13,7 +13,7 @@ import Register from '../components/register/Register'
 class Index extends React.Component {
 
   static async getInitialProps ({ req, res, store, isServer }) {
-    await store.dispatch(setUseerIfAuthed(req))
+    await store.dispatch(setUserIfAuthed(req))
 
     const state = store.getState()
 
