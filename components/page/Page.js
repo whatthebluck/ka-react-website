@@ -2,6 +2,7 @@ import { connect }from 'react-redux'
 import Menu from '../menu/Menu'
 import { compose } from "redux"
 
+
 const Page = (props) => {
 
   return (

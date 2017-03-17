@@ -4,37 +4,35 @@ import withRedux from 'next-redux-wrapper'
 import { connect } from "react-redux"
 import { compose } from "redux"
 import { initStore } from '../store'
-import { setUserIfAuthed } from '../components/auth/AuthActions'
 import Page from '../components/page/Page'
 import Login from '../components/login/Login'
-
+import Auth from '../components/auth/Auth'
 
 class Index extends React.Component {
-
-  static async getInitialProps ({ req, res, store, isServer }) {
-
-    // TODO: duplicated code in register.js
-    await store.dispatch(setUserIfAuthed(req))
-
-    const state = store.getState()
-
-    if(state.user.id) {
-      if(req) {
-        res.writeHead(301, { Location: '/' })
-        res.end()
-        return {}
-      }
-      Router.push('/')
-    }
-
-    return { ...state, isServer }
-  }
+  //
+  // static async getInitialProps ({ req, res, store, isServer }) {
+  //
+  //   const state = store.getState()
+  //
+  //   if(state.user.uid) {
+  //     if(req) {
+  //       res.writeHead(301, { Location: '/' })
+  //       res.end()
+  //       return {}
+  //     }
+  //     Router.push('/')
+  //   }
+  //
+  //   return { ...state, isServer }
+  // }
 
   render () {
     return (
-      <Page title="Login">
-        <Login />
-      </Page>
+      <Auth>
+        <Page title="Login">
+          <Login />
+        </Page>
+      </Auth>
     )
   }
 }

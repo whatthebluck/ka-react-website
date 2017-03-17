@@ -10,6 +10,7 @@ const Menu = (props) => {
     props.dispatch(logout())
   }
 
+
   const links = [
     {
       id: 'home',
@@ -27,25 +28,25 @@ const Menu = (props) => {
       id: 'login',
       name: 'Login',
       props: {href: '/login'},
-      show: !props.user.id
+      show: !props.user.uid
     },
     {
       id: 'logout',
       name: 'Logout',
       props: { href: '#', onClick: handleLogout },
-      show: props.user.id
+      show: props.user.uid
     },
     {
       id: 'register',
       name: 'Register',
       props: { href: '/register' },
-      show: !props.user.id
+      show: !props.user.uid
     },
     {
       id: 'account',
       name: 'My Account',
       props: { href: '/account' },
-      show: props.user.id
+      show: props.user.uid
     },
   ]
 

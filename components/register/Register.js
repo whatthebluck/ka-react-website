@@ -15,7 +15,9 @@ class Register extends React.Component {
     })
     const data = await request.json()
     if(!request.ok) throw new SubmissionError({_error: data.message})
+
     return this.props.dispatch(login(email, password))
+
   }
 
   render() {

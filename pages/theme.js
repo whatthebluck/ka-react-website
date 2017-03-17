@@ -8,13 +8,11 @@ import { initStore } from '../store'
 import Page from '../components/page/Page'
 import themes from '../config/themes'
 import stripe from '../config/stripe'
-import {setUserIfAuthed} from "../components/auth/AuthActions";
-
+import Auth from '../components/auth/Auth'
 
 class Index extends React.Component {
 
   static async getInitialProps ({ req, store, isServer, query: { id }  }) {
-    await store.dispatch(setUserIfAuthed(req))
     const state = store.getState()
     const theme = themes.find(theme => theme.id === id)
     return { ...state, isServer, theme }
@@ -27,21 +25,23 @@ class Index extends React.Component {
   // TODO: Toggle buy/download button
   render () {
     return (
-      <Page title={ this.props.theme.name }>
-        <StripeCheckout
-          name={this.props.theme.name}
-          description={this.props.theme.excerpt}
-          token={this.onToken}
-          stripeKey={stripe.publishableKEy}
-          email={this.props.user.email}
-          amount={this.props.theme.price}
-          currency='USD'
-          panelLabel="Pay"
-          opened={() => console.log('open!')}
-          closed={() => console.log('closed!')}
-        >
-        </StripeCheckout>
-      </Page>
+      <Auth>
+        <Page title={ this.props.theme.name }>
+          <StripeCheckout
+            name={this.props.theme.name}
+            description={this.props.theme.excerpt}
+            token={this.onToken}
+            stripeKey={stripe.publishableKEy}
+            email={this.props.user.email}
+            amount={this.props.theme.price}
+            currency='USD'
+            panelLabel="Pay"
+            opened={() => console.log('open!')}
+            closed={() => console.log('closed!')}
+          >
+          </StripeCheckout>
+        </Page>
+      </Auth>
     )
   }
 }

@@ -7,31 +7,27 @@ import withRedux from 'next-redux-wrapper'
 import { initStore } from '../store'
 import Page from '../components/page/Page'
 import themes from '../config/themes'
-import {setUserIfAuthed} from "../components/auth/AuthActions";
+import Auth from '../components/auth/Auth'
 
 class Index extends React.Component {
 
-  static async getInitialProps ({ req, store, isServer }) {
-    await store.dispatch(setUserIfAuthed(req))
-    const state = store.getState()
-    return { ...state, isServer }
-  }
-
   render () {
     return (
-      <Page title="Koken Themes">
-        <ul>
-          {
-            themes.map(theme =>
-              <li key={theme.name.toLowerCase()}>
-                <h2><Link href={`/theme?id=${theme.id}`} as={`/themes/${theme.id}`} prefetch><a>{theme.name}</a></Link></h2>
-                <p>{theme.excerpt}</p>
-                <p>${(theme.price / 100)}</p>
-              </li>
-            )
-          }
-        </ul>
-      </Page>
+      <Auth>
+        <Page title="Koken Themes">
+          <ul>
+            {
+              themes.map(theme =>
+                <li key={theme.name.toLowerCase()}>
+                  <h2><Link href={`/theme?id=${theme.id}`} as={`/themes/${theme.id}`} prefetch><a>{theme.name}</a></Link></h2>
+                  <p>{theme.excerpt}</p>
+                  <p>${(theme.price / 100)}</p>
+                </li>
+              )
+            }
+          </ul>
+        </Page>
+      </Auth>
     )
   }
 }

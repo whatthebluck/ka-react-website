@@ -1,19 +1,9 @@
-import cookie from 'cookie'
 
-export const setUserIfAuthed = req => dispatch => {
+export const removeUser = dispatch => {
+  return dispatch({type: 'REMOVE_USER' })
+}
 
-  if(!req) return
-
-  if(!req.headers.cookie) return
-
-  const cookies = cookie.parse(req.headers.cookie)
-
-  if(req) {
-    dispatch({
-      type: 'SET_USER',
-      id: cookies.id,
-      email: cookies.email,
-    })
-  }
+export const setUser = user => dispatch => {
+  return dispatch({type: 'SET_USER', uid: user.uid})
 
 }

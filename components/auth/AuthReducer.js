@@ -1,20 +1,14 @@
 const initialState = {
-  id: null,
-  email: null
+  uid: null
 }
 
 export default (state = initialState, action) => {
   switch (action.type) {
     case 'SET_USER':
-      return {
-        id: action.id,
-        email: action.email,
-      }
+      console.log(action.uid)
+      return { uid: action.uid }
     case 'REMOVE_USER':
-      return {
-        id: null,
-        email: null
-      }
+      return {}
     default:
       return state
   }
