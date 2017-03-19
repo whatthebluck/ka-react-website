@@ -1,5 +1,6 @@
 // import Link from 'next/link'
 import React from 'react'
+import fetch from 'isomorphic-fetch'
 import { compose } from 'redux'
 import { connect } from 'react-redux'
 import withRedux from 'next-redux-wrapper'
@@ -20,19 +21,26 @@ class Index extends React.Component {
     return { ...state, isServer, theme }
   }
 
-  onToken(token) {
-
+  // TODO - purchaseAction
+  onToken = (user, product) => async token => {
+    console.log('token', token)
+    const request = await fetch('http://localhost:3001/charge/create', {
+      method: 'POST',
+      body: JSON.stringify({token, user, product})
+    })
+    const data = await request.json()
+    console.log(data)
   }
 
-  // TODO: Toggle buy/download button
   render () {
     return (
       <Auth>
         <Page title={ this.props.theme.name }>
-          <StripeCheckout
+          { this.props.user.uid ?
+            <StripeCheckout
             name={this.props.theme.name}
             description={this.props.theme.excerpt}
-            token={this.onToken}
+            token={this.onToken(this.props.user, this.props.theme)}
             stripeKey={stripe.publishableKEy}
             email={this.props.user.email || ''}
             amount={this.props.theme.price}
@@ -40,8 +48,9 @@ class Index extends React.Component {
             panelLabel="Pay"
             opened={() => console.log('open!')}
             closed={() => console.log('closed!')}
-          >
-          </StripeCheckout>
+            >
+            </StripeCheckout>
+          : "You need to be logged in"}
         </Page>
       </Auth>
     )
