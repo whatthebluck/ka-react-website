@@ -7,9 +7,8 @@ const Menu = (props) => {
 
   const handleLogout = e => {
     e.preventDefault()
-    props.dispatch(logout())
+    props.dispatch(logout)
   }
-
 
   const links = [
     {
@@ -52,7 +51,6 @@ const Menu = (props) => {
 
   return (
     <ul>
-
       { links.map(link =>
         link.show && <li key={link.id}>
           { !link.props.onClick && <Link { ...link.props } prefetch><a>{link.name}</a></Link>}

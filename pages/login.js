@@ -7,24 +7,13 @@ import { initStore } from '../store'
 import Page from '../components/page/Page'
 import Login from '../components/login/Login'
 import Auth from '../components/auth/Auth'
+import {checkUserFromServer} from "../components/auth/AuthActions";
 
 class Index extends React.Component {
-  //
-  // static async getInitialProps ({ req, res, store, isServer }) {
-  //
-  //   const state = store.getState()
-  //
-  //   if(state.user.uid) {
-  //     if(req) {
-  //       res.writeHead(301, { Location: '/' })
-  //       res.end()
-  //       return {}
-  //     }
-  //     Router.push('/')
-  //   }
-  //
-  //   return { ...state, isServer }
-  // }
+  static async getInitialProps({ req, store }) {
+    await store.dispatch(checkUserFromServer(req))
+    return {}
+  }
 
   render () {
     return (

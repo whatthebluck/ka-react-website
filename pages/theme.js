@@ -9,10 +9,12 @@ import Page from '../components/page/Page'
 import themes from '../config/themes'
 import stripe from '../config/stripe'
 import Auth from '../components/auth/Auth'
+import {checkUserFromServer} from "../components/auth/AuthActions";
 
 class Index extends React.Component {
 
   static async getInitialProps ({ req, store, isServer, query: { id }  }) {
+    await store.dispatch(checkUserFromServer(req))
     const state = store.getState()
     const theme = themes.find(theme => theme.id === id)
     return { ...state, isServer, theme }
@@ -32,7 +34,7 @@ class Index extends React.Component {
             description={this.props.theme.excerpt}
             token={this.onToken}
             stripeKey={stripe.publishableKEy}
-            email={this.props.user.email}
+            email={this.props.user.email || ''}
             amount={this.props.theme.price}
             currency='USD'
             panelLabel="Pay"

@@ -8,8 +8,13 @@ import { initStore } from '../store'
 import Page from '../components/page/Page'
 import themes from '../config/themes'
 import Auth from '../components/auth/Auth'
+import {checkUserFromServer} from "../components/auth/AuthActions";
 
 class Index extends React.Component {
+  static async getInitialProps({ req, store }) {
+    await store.dispatch(checkUserFromServer(req))
+    return {}
+  }
 
   render () {
     return (
