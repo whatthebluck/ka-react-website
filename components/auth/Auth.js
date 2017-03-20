@@ -14,7 +14,7 @@ class Auth extends React.Component {
         databaseURL: "https://koken-addons.firebaseio.com",
       })
 
-      firebase.auth().onAuthStateChanged(user => {
+      firebase.auth().onAuthStateChanged(async user => {
         this.props.dispatch(setAuth(user))
       })
 
