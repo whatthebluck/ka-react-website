@@ -10,8 +10,13 @@ import Auth from '../components/auth/Auth'
 import {checkUserFromServer} from "../components/auth/AuthActions";
 
 class Index extends React.Component {
-  static async getInitialProps({ req, store }) {
+  static async getInitialProps({ req, res, store }) {
     await store.dispatch(checkUserFromServer(req))
+    const { user } = store.getState()
+    if(user.uid && res) {
+      res.writeHead(301, {'Location': '/account'});
+      return res.end();
+    }
     return {}
   }
 

@@ -4,7 +4,6 @@ import React from 'react'
 import { connect } from 'react-redux'
 import {compose} from "redux";
 
-
 class Auth extends React.Component {
 
   init() {
@@ -15,16 +14,16 @@ class Auth extends React.Component {
         databaseURL: "https://koken-addons.firebaseio.com",
       })
 
-      firebase.auth().onAuthStateChanged(
-        user => this.props.dispatch(setAuth(user))
-      )
-      
+      firebase.auth().onAuthStateChanged(user => {
+        this.props.dispatch(setAuth(user))
+      })
+
     } catch (err) {
       if (!/already exists/.test(err.message)) {
         console.error('Firebase initialization error', err.stack)
       }
     }
-    
+
   }
 
 
