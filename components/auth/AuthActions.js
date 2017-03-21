@@ -30,7 +30,7 @@ export const setAuth = user => async dispatch => {
 
 export const checkUserFromServer = req => async dispatch => {
   if(req && req.headers.cookie) {
-    const {token} = cookie.parse(req.headers.cookie)
+    const token = await getToken(req)
     const request = await fetch('http://localhost:3001/user', {
       headers: {
         Authorization: `Bearer ${token}`
