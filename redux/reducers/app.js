@@ -4,11 +4,10 @@ const initialState = {
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case 'LOADING':
-      return {
-        ...state,
-        loading: action.loading
-      }
+    case 'IS_LOADING':
+      return { loading: true }
+    case 'NOT_LOADING':
+      return { loading: false }
     default:
       return state
   }

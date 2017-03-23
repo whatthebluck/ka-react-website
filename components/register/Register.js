@@ -1,25 +1,16 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { login } from '../../redux/actions/auth'
+import { register } from '../../redux/actions/auth'
 import RegisterFrom from './RegisterForm'
-import { SubmissionError } from 'redux-form';
-import fetch from 'isomorphic-fetch'
 
 class Register extends React.Component {
 
-  handleRegister = async values => {
-    const { email, password } = values
-    const request = await fetch('http://localhost:3001/user/create', {
-      method: 'POST',
-      body: JSON.stringify(values)
-    })
-    const data = await request.json()
-    if(!request.ok) throw new SubmissionError({_error: data.message})
-    return this.props.dispatch(login(email, password))
-  }
+  handleRegister = async values => this.props.dispatch(register(values))
 
   render() {
-    return <RegisterFrom handleRegister={this.handleRegister} />
+    return !this.props.user.uid ?
+      (<RegisterFrom handleRegister={this.handleRegister} />) :
+      (<div>You are already registered.</div>)
   }
 }
 

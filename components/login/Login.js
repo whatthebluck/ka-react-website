@@ -12,7 +12,9 @@ class Login extends React.Component {
   }
 
   render() {
-    return <LoginFrom handleLogin={this.handleLogin} />
+    return !this.props.user.uid ?
+      <LoginFrom handleLogin={this.handleLogin} /> :
+      <div>You are already logged in</div>
   }
 }
 

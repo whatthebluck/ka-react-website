@@ -1,7 +1,7 @@
 import { compose } from "redux"
 import withRedux from 'next-redux-wrapper'
 import { connect } from 'react-redux'
-import { initStore } from '../store'
+import { initStore } from '../redux/store'
 import WithAuth from "./WithAuth";
 import WithLayout from "./WithLayout";
 

@@ -26,7 +26,8 @@ export const initFirebase = user => dispatch => {
       }
       await setAppCookie()
       setInterval(setAppCookie, 3500)
-      return dispatch({type: 'SET_USER', uid: user.uid, email: user.email})
+      console.log(user)
+      return dispatch({type: 'SET_USER', uid: user.uid, email: user.email, displayName: user.displayName})
     })
 
   } catch (err) {
@@ -39,8 +40,6 @@ export const initFirebase = user => dispatch => {
 
 export const getUser = req => async dispatch => {
 
-  // TODO add loader
-
   if(!req.headers.cookie) return null
 
   const token = cookie.parse(req.headers.cookie).token
@@ -52,7 +51,7 @@ export const getUser = req => async dispatch => {
 
   if(request.ok) {
     const user = await request.json()
-    dispatch({type: 'SET_USER', uid: user.uid, email: user.email})
+    dispatch({type: 'SET_USER', uid: user.uid, email: user.email, displayName: user.displayName})
   } else {
     const error = await request.text()
     console.error('Error fetching user', error)
@@ -75,11 +74,9 @@ const setAppCookie = async () => {
 
 
 export const getUsersThemes = (uid) => async dispatch => {
-  // TODO add loader
   firebase.database()
     .ref(`users/${uid}/products`)
     .on('value', function(snapshot) {
-      console.log(snapshot.val())
       const themesAsObject = snapshot.val()
       if(!themesAsObject) return
       dispatch({type: 'SET_USER_THEMES', themes: toArray(themesAsObject) })
@@ -88,23 +85,39 @@ export const getUsersThemes = (uid) => async dispatch => {
 }
 
 export const login = (email, password) => async dispatch => {
-  dispatch({type: "LOADING", loading: true})
+  dispatch({type: "IS_LOADING"})
   try {
     await firebase.auth().signInWithEmailAndPassword(email, password)
     Router.push('/account')
   } catch(e) {
-    dispatch({type: "LOADING", loading: false})
+    dispatch({type: "NOT_LOADING"})
     throw new SubmissionError({ _error: e.message })
   }
-  dispatch({type: "LOADING", loading: false})
+  dispatch({type: "NOT_LOADING"})
 }
 
 
 export const logout = async dispatch => {
-  dispatch({type: "LOADING", loading: true})
+  dispatch({type: "IS_LOADING"})
   await firebase.auth().signOut()
-  dispatch({type: "LOADING", loading: false})
+  dispatch({type: "NOT_LOADING"})
   Router.push('/login')
+}
+
+export const register = values => async dispatch => {
+  const { email, password } = values
+  dispatch({type: "IS_LOADING"})
+  try {
+    await firebase.auth().createUserWithEmailAndPassword(email, password)
+    Router.push('/account')
+  } catch(e) {
+    dispatch({type: "NOT_LOADING"})
+    throw new SubmissionError({_error: e.message})
+  }
+  dispatch({type: "NOT_LOADING"})
+  const user = firebase.auth().currentUser;
+  user.updateProfile({ displayName: values.firstName + values.lastName && ` ${values.firstName}`})
+
 }
 
 

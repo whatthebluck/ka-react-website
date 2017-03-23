@@ -5,11 +5,11 @@ import { Field, reduxForm } from 'redux-form';
 
 const RegisterForm = (props) => {
 
-  const { handleSubmit, register, handleRegister, error } = props
+  const { handleSubmit, app, handleRegister, error } = props
 
   return (
     <div>
-      { register.loading && 'loading....'}
+      { app.loading && 'loading....'}
       <form method="POST" onSubmit={handleSubmit(handleRegister)}>
         <Field component="input" type="text" name="firstName"/>
         <Field component="input" type="text" name="lastName"/>

@@ -6,7 +6,8 @@ export default (state = initialState, action) => {
       return {
         ...state,
         uid: action.uid,
-        email: action.email
+        email: action.email,
+        displayName: action.displayName
       }
     case 'REMOVE_USER':
       return {}
