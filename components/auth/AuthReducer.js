@@ -15,6 +15,11 @@ export default (state = initialState, action) => {
         ...state,
         themes: action.themes
       }
+    case 'LOGIN_NEEDED':
+      return {
+        ...state,
+        reAuthenticate: action.value
+      }
     default:
       return state
   }
