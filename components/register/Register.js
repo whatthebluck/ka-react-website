@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { login } from '../login/LoginActions'
+import { login } from '../../redux/actions/auth'
 import RegisterFrom from './RegisterForm'
 import { SubmissionError } from 'redux-form';
 import fetch from 'isomorphic-fetch'

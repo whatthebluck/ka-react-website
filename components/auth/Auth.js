@@ -1,5 +1,5 @@
 import firebase from 'firebase'
-import { setAuth } from '../auth/AuthActions'
+import { setAuth } from '../../redux/actions/auth'
 import React from 'react'
 import { connect } from 'react-redux'
 import {compose} from "redux";

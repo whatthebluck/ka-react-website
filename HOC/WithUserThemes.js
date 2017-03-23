@@ -1,6 +1,6 @@
 import {Component} from 'react'
 import {compose} from "redux";
-import {getUsersThemes} from "../components/auth/AuthActions";
+import {getUsersThemes} from "../redux/actions/auth";
 import {loadGetInitialProps} from "next/dist/lib/utils";
 
 const WithUserThemes = (ComposedComponent) => class WithUserThemes extends Component {

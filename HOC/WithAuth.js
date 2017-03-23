@@ -1,6 +1,6 @@
 import {Component} from 'react'
 import {compose} from "redux";
-import {getUser, initFirebase} from "../components/auth/AuthActions";
+import {getUser, initFirebase} from "../redux/actions/auth";
 import {loadGetInitialProps} from "next/dist/lib/utils";
 
 const WithAuth = (ComposedComponent) => class WithAuth extends Component {

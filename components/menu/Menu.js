@@ -1,7 +1,7 @@
 import { connect }from 'react-redux'
 import Link from 'next/link'
 import {compose} from "redux";
-import {logout} from "../login/LoginActions";
+import {logout} from "../../redux/actions/auth";
 
 const Menu = (props) => {
 

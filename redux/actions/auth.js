@@ -1,7 +1,9 @@
 import reactCookie from 'react-cookie'
 import cookie from 'cookie'
 import firebase from 'firebase'
+import Router from 'next/router'
 import fetch from 'isomorphic-fetch'
+import {SubmissionError} from "redux-form";
 
 export const initFirebase = user => dispatch => {
   try {
@@ -85,10 +87,25 @@ export const getUsersThemes = (uid) => async dispatch => {
 
 }
 
-// const getToken = async req => {
-//   return req ?
-//     await cookie.parse(req.headers.cookie).token :
-//     await firebase.auth().currentUser.getToken()
-// }
+export const login = (email, password) => async dispatch => {
+  dispatch({type: "LOADING", loading: true})
+  try {
+    await firebase.auth().signInWithEmailAndPassword(email, password)
+    Router.push('/account')
+  } catch(e) {
+    dispatch({type: "LOADING", loading: false})
+    throw new SubmissionError({ _error: e.message })
+  }
+  dispatch({type: "LOADING", loading: false})
+}
+
+
+export const logout = async dispatch => {
+  dispatch({type: "LOADING", loading: true})
+  await firebase.auth().signOut()
+  dispatch({type: "LOADING", loading: false})
+  Router.push('/login')
+}
+
 
 const toArray = obj => Object.keys(obj).map(key => obj[key])
