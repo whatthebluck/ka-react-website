@@ -1,19 +1,18 @@
 import {Component} from 'react'
 import {compose} from "redux";
-import {getUser, initFirebase} from "../components/auth/AuthActions";
+import {getUsersThemes} from "../components/auth/AuthActions";
 import {loadGetInitialProps} from "next/dist/lib/utils";
 
-const WithAuth = (ComposedComponent) => class WithAuth extends Component {
+const WithUserThemes = (ComposedComponent) => class WithUserThemes extends Component {
 
   static async getInitialProps (ctx) {
-    if(ctx.isServer) await ctx.store.dispatch(getUser(ctx.req))
     return {
       ...await loadGetInitialProps(ComposedComponent, ctx)
     }
   }
 
   async componentWillMount() {
-    await this.props.dispatch(initFirebase(this.props.user))
+    await this.props.dispatch(getUsersThemes(this.props.user.uid))
   }
 
   render () {
@@ -22,5 +21,5 @@ const WithAuth = (ComposedComponent) => class WithAuth extends Component {
 }
 
 export default compose(
-  WithAuth
+  WithUserThemes
 )

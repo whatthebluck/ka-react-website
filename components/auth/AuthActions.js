@@ -18,7 +18,13 @@ export const initFirebase = user => dispatch => {
     }
 
     firebase.auth().onAuthStateChanged(async user => {
-      dispatch(setAuth(user))
+      if (!user) {
+        reactCookie.remove('token', {path: '/'});
+        return dispatch({type: 'REMOVE_USER' })
+      }
+      await setAppCookie()
+      setInterval(setAppCookie, 3500)
+      return dispatch({type: 'SET_USER', uid: user.uid, email: user.email})
     })
 
   } catch (err) {
@@ -30,6 +36,9 @@ export const initFirebase = user => dispatch => {
 }
 
 export const getUser = req => async dispatch => {
+
+  // TODO add loader
+
   if(!req.headers.cookie) return null
 
   const token = cookie.parse(req.headers.cookie).token
@@ -53,47 +62,25 @@ export const getUser = req => async dispatch => {
 
 
 const setAppCookie = async () => {
-  const token = await firebase.auth().currentUser.getToken()
+  const user = firebase.auth().currentUser
+  if(!user) return null
+  const token = await user.getToken()
   reactCookie.save('token', token, {
     expire: 1 / 24, // One hour
     path: '/',
   })
 }
 
-export const setAuth = user => async dispatch => {
-  if (!user) {
-    reactCookie.remove('token', {path: '/'});
-    return dispatch({type: 'REMOVE_USER' })
-  }
-  await setAppCookie()
-  setInterval(setAppCookie, 3500)
-  return dispatch({type: 'SET_USER', uid: user.uid, email: user.email})
-}
 
-
-
-export const getUsersThemes = req => async dispatch => {
-
-  if(req && req.headers.cookie) {
-
-    const token = cookie.parse(req.headers.cookie).token
-    const request = await fetch('http://localhost:3001/user/themes', {
-      headers: { Authorization: `Bearer ${token}` }
-    })
-
-    if(request.ok) {
-      const themes = await request.json()
-      return dispatch({type: 'SET_USER_THEMES', themes: toArray(themes) })
-    }
-  }
-
-  const userId = firebase.auth().currentUser.uid
-
+export const getUsersThemes = (uid) => async dispatch => {
+  // TODO add loader
   firebase.database()
-    .ref(`users/${userId}/products`)
+    .ref(`users/${uid}/products`)
     .on('value', function(snapshot) {
-      const themes = toArray(snapshot.val())
-      dispatch({type: 'SET_USER_THEMES', themes })
+      console.log(snapshot.val())
+      const themesAsObject = snapshot.val()
+      if(!themesAsObject) return
+      dispatch({type: 'SET_USER_THEMES', themes: toArray(themesAsObject) })
     });
 
 }
