@@ -39,9 +39,7 @@ const Theme = ({ theme, user}) => {
   )
 }
 
-export default Page(WithTheme(Theme))
-// export default compose(
-//   Page,
-//   WithTheme,
-//   Theme
-// )
+export default compose(
+  Page,
+  WithTheme
+)(Theme)
