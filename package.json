@@ -21,7 +21,8 @@
     "redux": "^3.6.0",
     "redux-form": "^6.5.0",
     "redux-thunk": "^2.2.0",
-    "stripe": "^4.15.0"
+    "stripe": "^4.15.0",
+    "styled-components": "next"
   },
   "scripts": {
     "dev": "node server.js",

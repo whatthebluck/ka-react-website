@@ -1,4 +1,4 @@
-import {Component} from 'react'
+import React, {Component} from 'react'
 import {compose} from "redux";
 import {getUser, initFirebase} from "../redux/actions/auth";
 import {loadGetInitialProps} from "next/dist/lib/utils";

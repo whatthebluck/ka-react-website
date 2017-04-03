@@ -1,4 +1,10 @@
-const initialState = {}
+const initialState = {
+  uid: null,
+  email: null,
+  displayName: null,
+  themes: null,
+  reAuthenticate: false
+}
 
 export default (state = initialState, action) => {
   switch (action.type) {
@@ -10,7 +16,7 @@ export default (state = initialState, action) => {
         displayName: action.displayName
       }
     case 'REMOVE_USER':
-      return {}
+      return initialState
     case 'SET_USER_THEMES':
       return {
         ...state,

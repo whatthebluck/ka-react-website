@@ -1,7 +1,9 @@
+import React from 'react'
 import { connect }from 'react-redux'
 import Link from 'next/link'
 import {compose} from "redux";
 import {logout} from "../../redux/actions/auth";
+import styles from "styled-components";
 
 const Menu = (props) => {
 
@@ -50,16 +52,31 @@ const Menu = (props) => {
   ]
 
   return (
-    <ul>
+    <MenuList>
       { links.map(link =>
         link.show && <li key={link.id}>
           { !link.props.onClick && <Link { ...link.props } prefetch><a>{link.name}</a></Link>}
           { link.props.onClick && <a { ...link.props }>{link.name}</a>}
         </li>
       ) }
-    </ul>
+    </MenuList>
   )
 }
+
+const MenuList = styles.ul`
+  display: inline;
+  margin: 0;
+  
+  li {
+    display: inline;
+    margin: 0 0 0 20px;
+    
+    & a {
+      color: #fff;
+      text-decoration: none;
+    }
+  }
+`
 
 
 export default compose(
